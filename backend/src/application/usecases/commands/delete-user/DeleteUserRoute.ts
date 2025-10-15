@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import HttpStatus from 'http-status';
 import { DeleteUserCommand } from './DeleteUserCommand';
 import { DeleteUserHandler } from './DeleteUserHandler';
-import { ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { sendError, sendSuccess } from '../../../../shared/utils/response';
 import { isValidId } from '../../../../shared/utils/validation';
 
@@ -24,7 +24,7 @@ export function deleteUserRoute(handler: DeleteUserHandler): Router {
     try {
       const id = isValidId(req.params.id);
       if (!id) {
-        return sendError(res, ERROR_MESSAGES.INVALID_USER_ID, HttpStatus.BAD_REQUEST);
+        return sendError(res, errorMessages.user.invalidId, HttpStatus.BAD_REQUEST);
       }
 
       const command = new DeleteUserCommand(id);
@@ -32,8 +32,8 @@ export function deleteUserRoute(handler: DeleteUserHandler): Router {
 
       return sendSuccess(res, null);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : ERROR_MESSAGES.FAILED_TO_DELETE_USER;
-      const statusCode = error instanceof Error && error.message === 'User not found'
+      const errorMessage = error instanceof Error ? error.message : errorMessages.user.deleteFailed;
+      const statusCode = error instanceof Error && error.message === errorMessages.user.notFound
         ? HttpStatus.NOT_FOUND
         : HttpStatus.INTERNAL_SERVER_ERROR;
       return sendError(res, errorMessage, statusCode);

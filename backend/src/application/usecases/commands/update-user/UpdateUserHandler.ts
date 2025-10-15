@@ -4,6 +4,7 @@ import { Email } from '../../../../domain/value-objects/Email';
 import { IUserRepository } from '../../../repositories/IUserRepository';
 import { UpdateUserCommand } from './UpdateUserCommand';
 import { UpdateUserValidator } from './UpdateUserValidator';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 /**
  * Update User Command Handler
@@ -40,7 +41,7 @@ export class UpdateUserHandler {
     // Check if user exists
     const existingUser = await this.userRepository.findById(command.id);
     if (!existingUser) {
-      throw new Error('User not found');
+      throw new Error(errorMessages.user.notFound);
     }
 
     const updates: any = {};
@@ -52,7 +53,7 @@ export class UpdateUserHandler {
       // Check for duplicate email (excluding current user)
       const userWithEmail = await this.userRepository.findByEmail(email.toString());
       if (userWithEmail && userWithEmail.id !== command.id) {
-        throw new Error('Email already exists');
+        throw new Error(errorMessages.user.duplicateEmail);
       }
 
       updates.email = email.toString();

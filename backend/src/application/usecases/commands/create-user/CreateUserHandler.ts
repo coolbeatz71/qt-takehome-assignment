@@ -4,6 +4,7 @@ import { Email } from '../../../../domain/value-objects/Email';
 import { IUserRepository } from '../../../repositories/IUserRepository';
 import { CreateUserCommand } from './CreateUserCommand';
 import { CreateUserValidator } from './CreateUserValidator';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 
 /**
@@ -44,7 +45,7 @@ export class CreateUserHandler {
     // Check for duplicate email
     const existingUser = await this.userRepository.findByEmail(email.toString());
     if (existingUser) {
-      throw new Error('Email already exists');
+      throw new Error(errorMessages.user.duplicateEmail);
     }
 
     // Sign email using crypto service

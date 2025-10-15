@@ -2,6 +2,7 @@ import Database from 'better-sqlite3';
 import { User } from '../../domain/entities/User';
 import { IUserRepository } from '../../application/repositories/IUserRepository';
 import { UserRole, UserStatus } from '../../domain/enums/UserEnums';
+import { errorMessages } from '../../shared/constants/error-messages';
 
 /**
  * SQLite User Repository Implementation
@@ -116,7 +117,7 @@ export class UserRepository implements IUserRepository {
 
     const user = await this.findById(userId);
     if (!user) {
-      throw new Error('Failed to retrieve created user');
+      throw new Error(errorMessages.user.createFailed);
     }
 
     return user;
@@ -155,7 +156,7 @@ export class UserRepository implements IUserRepository {
 
     if (fields.length === 0) {
       const user = await this.findById(id);
-      if (!user) throw new Error('User not found');
+      if (!user) throw new Error(errorMessages.user.notFound);
       return user;
     }
 
@@ -165,7 +166,7 @@ export class UserRepository implements IUserRepository {
 
     const updatedUser = await this.findById(id);
     if (!updatedUser) {
-      throw new Error('Failed to retrieve updated user');
+      throw new Error(errorMessages.user.updateFailed);
     }
 
     return updatedUser;

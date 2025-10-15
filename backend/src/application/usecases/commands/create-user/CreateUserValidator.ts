@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { isValidRole, isValidStatus } from '../../../../shared/utils/validation';
 import { CreateUserCommand } from './CreateUserCommand';
 
@@ -25,18 +25,18 @@ export class CreateUserValidator {
 
     // Check required fields
     if (!command.email || !command.role || !command.status) {
-      errors.push(ERROR_MESSAGES.MISSING_REQUIRED_FIELDS);
+      errors.push(errorMessages.user.missingRequiredFields);
       return { isValid: false, errors };
     }
 
     // Validate role
     if (!isValidRole(command.role)) {
-      errors.push(ERROR_MESSAGES.INVALID_ROLE);
+      errors.push(errorMessages.user.invalidRole);
     }
 
     // Validate status
     if (!isValidStatus(command.status)) {
-      errors.push(ERROR_MESSAGES.INVALID_STATUS);
+      errors.push(errorMessages.user.invalidStatus);
     }
 
     return {

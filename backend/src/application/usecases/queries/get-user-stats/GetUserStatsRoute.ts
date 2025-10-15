@@ -2,7 +2,7 @@ import HttpStatus from 'http-status';
 import { Request, Response, Router } from 'express';
 import { GetUserStatsQuery } from './GetUserStatsQuery';
 import { GetUserStatsHandler } from './GetUserStatsHandler';
-import { ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { sendSuccess, sendError } from '../../../../shared/utils/response';
 
 /**
@@ -26,7 +26,7 @@ export function getUserStatsRoute(handler: GetUserStatsHandler): Router {
 
       return sendSuccess(res, stats);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : ERROR_MESSAGES.FAILED_TO_FETCH_STATISTICS;
+      const errorMessage = error instanceof Error ? error.message : errorMessages.user.statsFailed;
       return sendError(res, errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   });

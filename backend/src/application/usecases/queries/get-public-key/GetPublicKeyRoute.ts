@@ -3,7 +3,7 @@ import { Request, Response, Router } from 'express';
 import { GetPublicKeyQuery } from './GetPublicKeyQuery';
 import { GetPublicKeyHandler } from './GetPublicKeyHandler';
 import { sendError, sendSuccess } from '../../../../shared/utils/response';
-import { ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 /**
  * Get Public Key Route
@@ -26,7 +26,7 @@ export function getPublicKeyRoute(handler: GetPublicKeyHandler): Router {
 
       return sendSuccess(res, publicKeyData);
     } catch (error) {
-      return sendError(res, ERROR_MESSAGES.FAILED_TO_RETRIEVE_PUBLIC_KEY, HttpStatus.INTERNAL_SERVER_ERROR);
+      return sendError(res, errorMessages.crypto.publicKeyFailed, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   });
 

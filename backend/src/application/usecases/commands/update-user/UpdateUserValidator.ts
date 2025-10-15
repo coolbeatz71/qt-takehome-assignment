@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { isValidRole, isValidStatus } from '../../../../shared/utils/validation';
 import { UpdateUserCommand } from './UpdateUserCommand';
 
@@ -25,12 +25,12 @@ export class UpdateUserValidator {
 
     // Validate role if provided
     if (command.role && !isValidRole(command.role)) {
-      errors.push(ERROR_MESSAGES.INVALID_ROLE);
+      errors.push(errorMessages.user.invalidRole);
     }
 
     // Validate status if provided
     if (command.status && !isValidStatus(command.status)) {
-      errors.push(ERROR_MESSAGES.INVALID_STATUS);
+      errors.push(errorMessages.user.invalidStatus);
     }
 
     return {
