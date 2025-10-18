@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DeleteUserUseCase } from '../../application/usecases/commands/DeleteUser.usecase';
+import { DeleteUserUseCase } from '../../application/usecases/commands/DeleteUserUsecase';
 import { userRepository } from '../../infrastructure/repositories/UserRepository';
 import { errorMessages } from '../../../../shared/constants/error-messages';
 
