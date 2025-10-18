@@ -1,8 +1,8 @@
 import React from 'react';
-import { Users, UserCheck, Calendar } from 'lucide-react';
 import { StatCard } from '../../../../../../shared/presentation/components';
 import type { User } from '../../../../domain/entities/User.entity';
 import { DailyStatsDto } from '../../../../../stats/domain/dto/DailyStatsDto';
+import { IconCalendar, IconUserCheck, IconUsers } from '../../../../../../shared/presentation/icons';
 
 /**
  * StatsCards component props
@@ -32,21 +32,21 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ users, stats, loading })
       <StatCard
         title="Total Users"
         value={totalUsers}
-        icon={<Users className="h-6 w-6 text-primary-600 dark:text-primary-400" />}
+        icon={<IconUsers className="h-6 w-6 text-primary-600 dark:text-primary-400" />}
         color="bg-primary-50 dark:bg-primary-900/20"
         loading={loading}
       />
       <StatCard
         title="Active Users"
         value={activeUsers}
-        icon={<UserCheck className="h-6 w-6 text-success-600 dark:text-success-400" />}
+        icon={<IconUserCheck className="h-6 w-6 text-success-600 dark:text-success-400" />}
         color="bg-success-50 dark:bg-success-900/20"
         loading={loading}
       />
       <StatCard
         title="New This Week"
         value={thisWeekCount}
-        icon={<Calendar className="h-6 w-6 text-purple-600 dark:text-purple-400" />}
+        icon={<IconCalendar className="h-6 w-6 text-purple-600 dark:text-purple-400" />}
         color="bg-purple-50 dark:bg-purple-900/20"
         loading={loading}
       />

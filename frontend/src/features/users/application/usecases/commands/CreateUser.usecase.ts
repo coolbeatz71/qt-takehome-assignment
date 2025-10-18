@@ -1,6 +1,6 @@
-import type { IUserRepository } from '../../repositories/IUserRepository';
 import type { User } from '../../../domain/entities/User.entity';
 import type { CreateUserDTO } from '../../../domain/dto/CreateUserDTO';
+import { IUserRepository } from '../../repositories/IUserRepository';
 
 /**
  * Create user use case for creating a new user in the system

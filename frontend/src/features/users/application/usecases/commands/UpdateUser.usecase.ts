@@ -1,6 +1,6 @@
-import type { IUserRepository } from '../../repositories/IUserRepository';
 import type { User } from '../../../domain/entities/User.entity';
 import type { UpdateUserDTO } from '../../../domain/dto/UpdateUserDTO';
+import { IUserRepository } from '../../repositories/IUserRepository';
 
 /**
  * Update user use case for updating an existing user

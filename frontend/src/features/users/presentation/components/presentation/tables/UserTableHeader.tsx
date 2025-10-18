@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Search } from 'lucide-react';
+import { IconPlus, IconSearch } from '../../../../../../shared/presentation/icons';
 import { Button, Card } from '../../../../../../shared';
 
 /**
@@ -34,7 +34,7 @@ export const UserTableHeader: React.FC<UserTableHeaderProps> = ({
       </Card.Title>
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative w-full sm:w-auto">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
+          <IconSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
           <input
             type="text"
             placeholder="Search users..."
@@ -44,7 +44,7 @@ export const UserTableHeader: React.FC<UserTableHeaderProps> = ({
           />
         </div>
         <Button onClick={onCreateClick} size="sm" className="w-full sm:w-auto">
-          <Plus className="h-4 w-4 mr-2" />
+          <IconPlus className="h-4 w-4 mr-2" />
           Create User
         </Button>
       </div>

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Edit, Trash2 } from 'lucide-react';
 import { Badge, Button, Avatar } from '../../../../../../shared/presentation/components';
 import { DateUtils } from '../../../../../../shared/utils/dateUtils';
 import { BadgeUtils } from '../../../utils/badgeUtils';
 import { truncateEmail } from '../../../utils/emailUtils';
 import { User } from '../../../../domain/entities';
+import { IconEdit, IconTrash } from '../../../../../../shared/presentation/icons';
 
 /**
  * User mobile card component props
@@ -53,7 +53,7 @@ export const UserMobileCard: React.FC<UserMobileCardProps> = ({ user, onEdit, on
             onClick={() => onEdit(user)}
             className="h-9 w-9 p-0"
           >
-            <Edit className="h-5 w-5" />
+            <IconEdit className="h-5 w-5" />
           </Button>
           <Button
             variant="ghost"
@@ -61,7 +61,7 @@ export const UserMobileCard: React.FC<UserMobileCardProps> = ({ user, onEdit, on
             onClick={() => onDelete(user.id)}
             className="h-9 w-9 p-0 text-danger-600 hover:text-danger-700 hover:bg-danger-50 dark:hover:bg-danger-900/20"
           >
-            <Trash2 className="h-5 w-5" />
+            <IconTrash className="h-5 w-5" />
           </Button>
         </div>
       </div>

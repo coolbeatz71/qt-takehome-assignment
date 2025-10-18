@@ -1,5 +1,5 @@
 import { DailyStatsDto } from '../../../domain/dto/DailyStatsDto';
-import type { IStatsRepository } from '../../repositories/IStatsRepository';
+import { IStatsRepository } from '../../repositories/IStatsRepository';
 
 /**
  * Get daily stats use case for retrieving user creation statistics
