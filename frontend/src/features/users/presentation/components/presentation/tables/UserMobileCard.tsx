@@ -27,7 +27,7 @@ export const UserMobileCard: React.FC<UserMobileCardProps> = ({ user, onEdit, on
   return (
     <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
       <div className="flex items-center gap-3 mb-3">
-        <Avatar email={user.email} verified={true} />
+        <Avatar email={user.email} verified={!!user.signature} />
         <div className="flex-1 min-w-0">
           <div className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate" title={user.email}>
             {truncateEmail(user.email, 20)}

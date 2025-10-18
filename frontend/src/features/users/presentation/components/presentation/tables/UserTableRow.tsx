@@ -28,7 +28,7 @@ export const UserTableRow: React.FC<UserTableRowProps> = ({ user, onEdit, onDele
     <tr className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
       <td className="py-3 px-3">
         <div className="flex items-center gap-3">
-          <Avatar email={user.email} verified={true} />
+          <Avatar email={user.email} verified={!!user.signature} />
           <div className="min-w-0 flex-1">
             <div className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate" title={user.email}>
               {truncateEmail(user.email, 25)}
