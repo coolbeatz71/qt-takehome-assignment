@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { User } from '../../domain/entities/User.entity';
+import type { User } from '../../domain/entities/User';
 
 /**
  * Dashboard hook return value
