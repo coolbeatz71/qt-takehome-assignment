@@ -1,4 +1,4 @@
-import { ThemeProvider } from './contexts/ThemeContext';
+import { ThemeProvider } from './shared/presentation/contexts';
 import { DashboardContainer } from './features/users';
 
 function App() {

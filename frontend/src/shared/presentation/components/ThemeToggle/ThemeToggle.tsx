@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconMoon, IconSun } from '../../icons';
 import { Button } from '../Button';
-import { useTheme } from '../../../../contexts/ThemeContext';
+import { useTheme } from '../../contexts';
 
 /**
  * Theme toggle component for switching between light and dark modes
