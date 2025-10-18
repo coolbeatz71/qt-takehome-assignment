@@ -25,7 +25,7 @@ interface UserMobileCardProps {
  */
 export const UserMobileCard: React.FC<UserMobileCardProps> = ({ user, onEdit, onDelete }) => {
   return (
-    <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
+    <div className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
       <div className="flex items-center gap-3 mb-3">
         <Avatar email={user.email} verified={!!user.signature} />
         <div className="flex-1 min-w-0">
@@ -43,25 +43,25 @@ export const UserMobileCard: React.FC<UserMobileCardProps> = ({ user, onEdit, on
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <div className="text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-xs text-gray-600 dark:text-gray-400">
           Created {DateUtils.formatTable(user.createdAt)}
         </div>
         <div className="flex gap-1">
           <Button
-            variant="ghost"
+            variant="secondary"
             size="sm"
             onClick={() => onEdit(user)}
             className="h-9 w-9 p-0"
           >
-            <IconEdit className="h-5 w-5" />
+            <IconEdit />
           </Button>
           <Button
-            variant="ghost"
+            variant="danger"
             size="sm"
             onClick={() => onDelete(user.id)}
             className="h-9 w-9 p-0 text-danger-600 hover:text-danger-700 hover:bg-danger-50 dark:hover:bg-danger-900/20"
           >
-            <IconTrash className="h-5 w-5" />
+            <IconTrash />
           </Button>
         </div>
       </div>
