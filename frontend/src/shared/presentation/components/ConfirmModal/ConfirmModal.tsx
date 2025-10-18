@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle } from 'lucide-react';
+import { IconAlertTriangle } from '../../icons';
 import { Modal } from '../Modal';
 import { Button } from '../Button';
 
@@ -72,7 +72,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
     >
       <div className="flex gap-4">
         <div className={`h-12 w-12 rounded-full ${bgColor} flex-shrink-0 flex items-center justify-center`}>
-          <AlertTriangle className={`h-6 w-6 ${iconColor}`} />
+          <IconAlertTriangle className={`h-6 w-6 ${iconColor}`} />
         </div>
         <div className="flex-1">
           <div className="text-sm text-gray-600 dark:text-gray-300">{message}</div>

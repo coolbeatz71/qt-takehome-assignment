@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { IconCheck } from '../../icons';
 
 /**
  * Avatar component props
@@ -60,7 +60,7 @@ export const Avatar: React.FC<AvatarProps> = ({
           aria-label={tooltip}
           role="img"
         >
-          <Check className={`${size === 'sm' ? 'h-2 w-2' : 'h-2.5 w-2.5'} text-white stroke-2`} />
+          <IconCheck className={`${size === 'sm' ? 'h-2 w-2' : 'h-2.5 w-2.5'} text-white stroke-2`} />
         </div>
       )}
     </div>

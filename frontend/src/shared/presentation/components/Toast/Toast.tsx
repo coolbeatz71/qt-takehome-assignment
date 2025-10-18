@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { CheckCircle, XCircle, AlertCircle, X } from 'lucide-react';
+import { IconCheckCircle, IconXCircle, IconAlertCircle, IconX } from '../../icons';
 
 /**
  * Toast component props
@@ -27,9 +27,9 @@ export const Toast: React.FC<ToastProps> = ({ type, message, onClose, duration =
   }, [onClose, duration]);
 
   const icons = {
-    success: CheckCircle,
-    error: XCircle,
-    warning: AlertCircle,
+    success: IconCheckCircle,
+    error: IconXCircle,
+    warning: IconAlertCircle,
   };
 
   const styles = {
@@ -54,7 +54,7 @@ export const Toast: React.FC<ToastProps> = ({ type, message, onClose, duration =
         onClick={onClose}
         className="flex-shrink-0 p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded"
       >
-        <X className="h-4 w-4" />
+        <IconX className="h-4 w-4" />
       </button>
     </div>
   );
