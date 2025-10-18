@@ -1,5 +1,5 @@
 import type { IUserRepository } from '../../repositories/IUserRepository';
-import type { User } from '../../../domain/entities/User.entity';
+import type { User } from '../../../domain/entities/User';
 import { protobufService } from '../../../infrastructure/services/ProtobufService';
 import { cryptoService } from '../../../infrastructure/services/CryptoService';
 

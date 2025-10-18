@@ -1,5 +1,5 @@
 import type { IUserRepository } from '../../repositories/IUserRepository';
-import type { User } from '../../../domain/entities/User.entity';
+import type { User } from '../../../domain/entities/User';
 
 /**
  * Get user by ID use case for retrieving a single user
