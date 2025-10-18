@@ -32,7 +32,7 @@ export const StatCard: React.FC<StatCardProps> = ({ title, value, icon, color, l
             {icon}
           </div>
           <div className="text-right">
-            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wider">
               {title}
             </p>
             {loading ? (
