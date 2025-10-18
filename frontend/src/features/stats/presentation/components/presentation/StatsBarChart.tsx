@@ -29,7 +29,7 @@ interface StatsBarChartProps {
  */
 export const StatsBarChart: React.FC<StatsBarChartProps> = ({ data }) => {
   return (
-    <div className="h-64 sm:h-80">
+    <div className="h-64">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
