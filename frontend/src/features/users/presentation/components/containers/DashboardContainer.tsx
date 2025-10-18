@@ -79,7 +79,7 @@ export const DashboardContainer: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:px-6 sm:py-8">
         <DashboardHeader />
 
         <div className="space-y-6">
@@ -89,26 +89,20 @@ export const DashboardContainer: React.FC = () => {
             loading={usersLoading || statsLoading}
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            <div className="lg:col-span-2">
-              <StatsChartContainer
-                stats={stats}
-                loading={statsLoading}
-                error={null}
-                onRetry={refetchStats}
-              />
-            </div>
+          <StatsChartContainer
+            stats={stats}
+            loading={statsLoading}
+            error={null}
+            onRetry={refetchStats}
+          />
 
-            <div className="lg:col-span-3">
-              <UserTableContainer
-                users={users}
-                loading={usersLoading}
-                onEdit={handleEditUser}
-                onDelete={(id) => handleDeleteUser(users, id)}
-                onCreate={handleCreateUser}
-              />
-            </div>
-          </div>
+          <UserTableContainer
+            users={users}
+            loading={usersLoading}
+            onEdit={handleEditUser}
+            onDelete={(id) => handleDeleteUser(users, id)}
+            onCreate={handleCreateUser}
+          />
         </div>
       </div>
 
