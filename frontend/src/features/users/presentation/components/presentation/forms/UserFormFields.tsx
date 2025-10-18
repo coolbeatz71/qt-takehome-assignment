@@ -1,7 +1,5 @@
 import React from 'react';
-import { FormInput } from './FormInput';
-import { FormSelect } from './FormSelect';
-import { FormError } from './FormError';
+import { Input, Select, ErrorMessage } from '../../../../../../shared/presentation/components';
 import { UserRole, UserStatus } from '../../../../domain/enums';
 
 /**
@@ -57,9 +55,9 @@ export const UserFormFields: React.FC<UserFormFieldsProps> = ({
 }) => {
   return (
     <div className="space-y-4">
-      {errors.submit && <FormError message={errors.submit} />}
+      {errors.submit && <ErrorMessage message={errors.submit} />}
 
-      <FormInput
+      <Input
         id="email"
         label="Email"
         type="email"
@@ -71,7 +69,7 @@ export const UserFormFields: React.FC<UserFormFieldsProps> = ({
         disabled={disabled}
       />
 
-      <FormSelect
+      <Select
         id="role"
         label="Role"
         value={formData.role}
@@ -81,7 +79,7 @@ export const UserFormFields: React.FC<UserFormFieldsProps> = ({
         disabled={disabled}
       />
 
-      <FormSelect
+      <Select
         id="status"
         label="Status"
         value={formData.status}
