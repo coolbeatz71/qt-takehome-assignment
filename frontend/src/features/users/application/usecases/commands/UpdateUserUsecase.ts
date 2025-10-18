@@ -1,4 +1,4 @@
-import type { User } from '../../../domain/entities/User.entity';
+import type { User } from '../../../domain/entities/User';
 import type { UpdateUserDTO } from '../../../domain/dto/UpdateUserDTO';
 import { IUserRepository } from '../../repositories/IUserRepository';
 
