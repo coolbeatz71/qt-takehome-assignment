@@ -1,4 +1,5 @@
-import type { User } from '../../domain/entities/User.entity';
+import type { User } from '../../domain/entities/User';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 /**
  * Crypto service for signature verification
@@ -53,7 +54,7 @@ export class CryptoService {
   private derToRaw(derSignature: Uint8Array): Uint8Array {
     let offset = 0;
 
-    if (derSignature[offset++] !== 0x30) throw new Error('Invalid DER signature');
+    if (derSignature[offset++] !== 0x30) throw new Error(errorMessages.crypto.invalidSignature);
 
     const length = derSignature[offset++];
     if (length & 0x80) {
@@ -61,7 +62,7 @@ export class CryptoService {
       offset += lengthBytes;
     }
 
-    if (derSignature[offset++] !== 0x02) throw new Error('Invalid DER signature');
+    if (derSignature[offset++] !== 0x02) throw new Error(errorMessages.crypto.invalidSignature);
     let rLength = derSignature[offset++];
     if (rLength & 0x80) {
       const lengthBytes = rLength & 0x7f;
@@ -79,7 +80,7 @@ export class CryptoService {
     const r = derSignature.slice(rStart, rStart + rLength);
     offset = rStart + rLength;
 
-    if (derSignature[offset++] !== 0x02) throw new Error('Invalid DER signature');
+    if (derSignature[offset++] !== 0x02) throw new Error(errorMessages.crypto.invalidSignature);
     let sLength = derSignature[offset++];
     if (sLength & 0x80) {
       const lengthBytes = sLength & 0x7f;

@@ -1,5 +1,5 @@
 import protobuf from 'protobufjs';
-import type { User } from '../../domain/entities/User.entity';
+import type { User } from '../../domain/entities/User';
 
 /**
  * Protobuf service for decoding user data from Protocol Buffer format
