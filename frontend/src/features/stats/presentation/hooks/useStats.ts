@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GetDailyStatsUseCase } from '../../application/usecases/queries/GetDailyStats.usecase';
 import { statsRepository } from '../../infrastructure/repositories/StatsRepository';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { DailyStatsDto } from '../../domain/dto/DailyStatsDto';
 
 const getDailyStatsUseCase = new GetDailyStatsUseCase(statsRepository);
@@ -25,7 +26,7 @@ export const useStats = () => {
       const data = await getDailyStatsUseCase.execute();
       setStats(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch statistics');
+      setError(err instanceof Error ? err.message : errorMessages.stats.fetchFailed);
     } finally {
       setLoading(false);
     }
