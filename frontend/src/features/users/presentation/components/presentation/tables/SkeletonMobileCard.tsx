@@ -6,7 +6,7 @@ import { SkeletonLoader } from '../../../../../../shared/presentation/components
  * @returns {JSX.Element} Skeleton mobile card
  */
 export const SkeletonMobileCard: React.FC = () => (
-  <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+  <div className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
     <div className="flex items-center gap-3 mb-3">
       <SkeletonLoader className="h-8 w-8 rounded-full" />
       <div className="flex-1">
