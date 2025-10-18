@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import type { User } from '../../../domain/entities/User.entity';
+import type { User } from '../../../domain/entities/User';
 import { Card } from '../../../../../shared/presentation/components';
 import {
   UserTableHeader,

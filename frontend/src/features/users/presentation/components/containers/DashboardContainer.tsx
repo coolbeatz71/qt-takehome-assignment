@@ -2,7 +2,8 @@ import React from 'react';
 import type { CreateUserDTO } from '../../../domain/dto/CreateUserDTO';
 import type { UpdateUserDTO } from '../../../domain/dto/UpdateUserDTO';
 import { Toast, ConfirmModal } from '../../../../../shared/presentation/components';
-import { DashboardHeader, DashboardError, StatsCards, UserChart } from '../presentation/dashboard';
+import { DashboardHeader, DashboardError, StatsCards } from '../presentation/dashboard';
+import { StatsChartContainer } from '../../../../stats/presentation/components';
 import { UserTableContainer } from './UserTableContainer';
 import { UserFormContainer } from './UserFormContainer';
 import { useGetUsers } from '../../hooks/useGetUsers';
@@ -12,6 +13,7 @@ import { useDeleteUser } from '../../hooks/useDeleteUser';
 import { useStats } from '../../../../stats/presentation/hooks/useStats';
 import { useDashboard } from '../../hooks/useDashboard';
 import { useToast } from '../../../../../shared/presentation/hooks/useToast';
+import { errorMessages } from '../../../../../shared/constants/error-messages';
 
 /**
  * Dashboard container component managing the main application view
@@ -45,9 +47,9 @@ export const DashboardContainer: React.FC = () => {
       if (deleted) {
         await refetchUsers();
         await refetchStats();
-        success('User deleted successfully');
+        success(errorMessages.user.deleteSuccess);
       } else {
-        error('Failed to delete user');
+        error(errorMessages.user.deleteFailed);
       }
       setUserToDelete(null);
     }
@@ -59,14 +61,14 @@ export const DashboardContainer: React.FC = () => {
       if (user) {
         await refetchUsers();
         await refetchStats();
-        success('User created successfully');
+        success(errorMessages.user.createSuccess);
       }
     } else if (editingUser) {
       const user = await updateUser(editingUser.id, userData as UpdateUserDTO);
       if (user) {
         await refetchUsers();
         await refetchStats();
-        success('User updated successfully');
+        success(errorMessages.user.updateSuccess);
       }
     }
   };
@@ -89,11 +91,11 @@ export const DashboardContainer: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             <div className="lg:col-span-2">
-              <UserChart
+              <StatsChartContainer
                 stats={stats}
                 loading={statsLoading}
                 error={null}
-                onRetry={undefined}
+                onRetry={refetchStats}
               />
             </div>
 

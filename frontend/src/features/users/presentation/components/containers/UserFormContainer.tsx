@@ -1,5 +1,5 @@
 import React from 'react';
-import type { User } from '../../../domain/entities/User.entity';
+import type { User } from '../../../domain/entities/User';
 import type { CreateUserDTO } from '../../../domain/dto/CreateUserDTO';
 import type { UpdateUserDTO } from '../../../domain/dto/UpdateUserDTO';
 import { Modal } from '../../../../../shared/presentation/components';
