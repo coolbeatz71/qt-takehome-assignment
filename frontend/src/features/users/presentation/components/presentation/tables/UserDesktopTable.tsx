@@ -1,7 +1,7 @@
 import React from 'react';
-import type { User } from '../../../domain/entities/User.entity';
 import { UserTableHead } from './UserTableHead';
 import { UserTableRow } from './UserTableRow';
+import { User } from '../../../../domain/entities';
 
 /**
  * Desktop table component props

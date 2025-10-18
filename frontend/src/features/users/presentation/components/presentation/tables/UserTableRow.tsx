@@ -1,9 +1,9 @@
 import React from 'react';
-import type { User } from '../../../../domain/entities/User.entity';
+import type { User } from '../../../../domain/entities/User';
 import { Badge, Button, Avatar } from '../../../../../../shared/presentation/components';
-import { DateUtils } from '../../../../../../shared/utils/dateUtils';
-import { BadgeUtils } from '../../../utils/badgeUtils';
-import { truncateEmail } from '../../../utils/emailUtils';
+import { DateUtils } from '../../../../../../shared/utils/date.utils';
+import { BadgeUtils } from '../../../utils/badge.utils';
+import { truncateEmail } from '../../../utils/email.utils';
 import { IconEdit, IconTrash } from '../../../../../../shared/presentation/icons';
 
 /**
