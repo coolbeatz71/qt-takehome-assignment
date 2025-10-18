@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 
 /**
  * Pagination hook props
@@ -30,16 +30,20 @@ interface UsePaginationProps<T> {
 export const usePagination = <T>({ data, itemsPerPage }: UsePaginationProps<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Memoize total pages calculation to avoid redundant computation
+  const totalPages = useMemo(
+    () => Math.ceil(data.length / itemsPerPage) || 1,
+    [data.length, itemsPerPage]
+  );
+
   // Reset to first page if current page exceeds total pages
   useEffect(() => {
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-    if (currentPage > totalPages && totalPages > 0) {
+    if (currentPage > totalPages) {
       setCurrentPage(1);
     }
-  }, [data.length, itemsPerPage, currentPage]);
+  }, [currentPage, totalPages]);
 
   const paginationData = useMemo(() => {
-    const totalPages = Math.ceil(data.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentData = data.slice(startIndex, endIndex);
@@ -52,32 +56,43 @@ export const usePagination = <T>({ data, itemsPerPage }: UsePaginationProps<T>) 
       hasNext: currentPage < totalPages,
       hasPrev: currentPage > 1,
     };
-  }, [data, itemsPerPage, currentPage]);
+  }, [data, itemsPerPage, currentPage, totalPages]);
 
   /**
    * Navigate to a specific page
    * @param {number} page - Page number to navigate to
    */
-  const goToPage = (page: number) => {
-    if (page >= 1 && page <= paginationData.totalPages) {
-      setCurrentPage(page);
-    }
-  };
+  const goToPage = useCallback(
+    (page: number) => {
+      if (page >= 1 && page <= totalPages) {
+        setCurrentPage(page);
+      }
+    },
+    [totalPages]
+  );
 
   /**
    * Navigate to the next page
    */
-  const nextPage = () => goToPage(currentPage + 1);
+  const nextPage = useCallback(() => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  }, [currentPage, totalPages]);
 
   /**
    * Navigate to the previous page
    */
-  const prevPage = () => goToPage(currentPage - 1);
+  const prevPage = useCallback(() => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  }, [currentPage]);
 
   /**
    * Reset to the first page
    */
-  const resetPage = () => setCurrentPage(1);
+  const resetPage = useCallback(() => setCurrentPage(1), []);
 
   return {
     ...paginationData,

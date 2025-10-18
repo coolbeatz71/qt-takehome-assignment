@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 /**
  * Toast notification object
@@ -24,6 +24,7 @@ interface Toast {
  */
 export const useToast = () => {
   const [toasts, setToasts] = useState<Toast[]>([]);
+  const toastCounterRef = useRef(0);
 
   /**
    * Show a toast notification
@@ -31,8 +32,8 @@ export const useToast = () => {
    * @param {string} message - Message to display
    */
   const showToast = useCallback((type: Toast['type'], message: string) => {
-    const id = Date.now().toString();
-    setToasts(prev => [...prev, { id, type, message }]);
+    const id = `toast-${++toastCounterRef.current}-${Date.now()}`;
+    setToasts((prev) => [...prev, { id, type, message }]);
   }, []);
 
   /**
@@ -40,7 +41,7 @@ export const useToast = () => {
    * @param {string} id - ID of the toast to hide
    */
   const hideToast = useCallback((id: string) => {
-    setToasts(prev => prev.filter(toast => toast.id !== id));
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
   }, []);
 
   /**
