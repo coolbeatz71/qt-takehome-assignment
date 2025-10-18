@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatCard } from '../../../../../../shared/presentation/components';
-import type { User } from '../../../../domain/entities/User.entity';
+import type { User } from '../../../../domain/entities/User';
 import { DailyStatsDto } from '../../../../../stats/domain/dto/DailyStatsDto';
 import { IconCalendar, IconUserCheck, IconUsers } from '../../../../../../shared/presentation/icons';
 
@@ -46,7 +46,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ users, stats, loading })
       <StatCard
         title="New This Week"
         value={thisWeekCount}
-        icon={<IconCalendar className="h-6 w-6 text-purple-600 dark:text-purple-400" />}
+        icon={<IconCalendar className="h-6 w-6 text-amber-600 dark:text-amber-400" />}
         color="bg-purple-50 dark:bg-purple-900/20"
         loading={loading}
       />
