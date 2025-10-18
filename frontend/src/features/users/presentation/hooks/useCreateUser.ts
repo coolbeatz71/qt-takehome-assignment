@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import type { User } from '../../domain/entities/User.entity';
+import type { User } from '../../domain/entities/User';
 import type { CreateUserDTO } from '../../domain/dto/CreateUserDTO';
-import { CreateUserUseCase } from '../../application/usecases/commands/CreateUser.usecase';
+import { CreateUserUseCase } from '../../application/usecases/commands/CreateUserUsecase';
 import { userRepository } from '../../infrastructure/repositories/UserRepository';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 const createUserUseCase = new CreateUserUseCase(userRepository);
 
@@ -24,7 +25,7 @@ export const useCreateUser = () => {
       const user = await createUserUseCase.execute(data);
       return user;
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create user');
+      setError(err instanceof Error ? err.message : errorMessages.user.createFailed);
       return null;
     } finally {
       setLoading(false);

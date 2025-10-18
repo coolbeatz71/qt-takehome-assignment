@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import type { User } from '../../domain/entities/User.entity';
-import { GetVerifiedUsersUseCase } from '../../application/usecases/queries/GetVerifiedUsers.usecase';
+import type { User } from '../../domain/entities/User';
+import { GetVerifiedUsersUseCase } from '../../application/usecases/queries/GetVerifiedUsersUsecase';
 import { userRepository } from '../../infrastructure/repositories/UserRepository';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 const getVerifiedUsersUseCase = new GetVerifiedUsersUseCase(userRepository);
 
@@ -26,7 +27,7 @@ export const useGetUsers = () => {
       const data = await getVerifiedUsersUseCase.execute();
       setUsers(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch users');
+      setError(err instanceof Error ? err.message : errorMessages.user.fetchAllFailed);
     } finally {
       setLoading(false);
     }

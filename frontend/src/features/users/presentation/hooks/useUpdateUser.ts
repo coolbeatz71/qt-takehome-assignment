@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import type { User } from '../../domain/entities/User.entity';
+import type { User } from '../../domain/entities/User';
 import type { UpdateUserDTO } from '../../domain/dto/UpdateUserDTO';
-import { UpdateUserUseCase } from '../../application/usecases/commands/UpdateUser.usecase';
+import { UpdateUserUseCase } from '../../application/usecases/commands/UpdateUserUsecase';
 import { userRepository } from '../../infrastructure/repositories/UserRepository';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 const updateUserUseCase = new UpdateUserUseCase(userRepository);
 
@@ -24,7 +25,7 @@ export const useUpdateUser = () => {
       const user = await updateUserUseCase.execute(id, data);
       return user;
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update user');
+      setError(err instanceof Error ? err.message : errorMessages.user.updateFailed);
       return null;
     } finally {
       setLoading(false);

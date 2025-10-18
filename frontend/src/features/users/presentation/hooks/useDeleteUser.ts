@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { DeleteUserUseCase } from '../../application/usecases/commands/DeleteUser.usecase';
 import { userRepository } from '../../infrastructure/repositories/UserRepository';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 const deleteUserUseCase = new DeleteUserUseCase(userRepository);
 
@@ -22,7 +23,7 @@ export const useDeleteUser = () => {
       await deleteUserUseCase.execute(id);
       return true;
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to delete user');
+      setError(err instanceof Error ? err.message : errorMessages.user.deleteFailed);
       return false;
     } finally {
       setLoading(false);
