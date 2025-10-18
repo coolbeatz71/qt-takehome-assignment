@@ -8,3 +8,7 @@ export { SkeletonLoader } from './SkeletonLoader';
 export { Avatar } from './Avatar';
 export { Toast } from './Toast';
 export { ConfirmModal } from './ConfirmModal';
+export { Input } from './Input';
+export { Select } from './Select';
+export { ErrorMessage } from './ErrorMessage';
+export type { SelectOption } from './Select';
