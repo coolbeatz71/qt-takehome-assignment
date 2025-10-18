@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { GetDailyStatsUseCase } from '../../application/usecases/queries/GetDailyStats.usecase';
+import { GetDailyStatsUseCase } from '../../application/usecases/queries/GetDailyStatsUsecase';
 import { statsRepository } from '../../infrastructure/repositories/StatsRepository';
 import { errorMessages } from '../../../../shared/constants/error-messages';
 import { DailyStatsDto } from '../../domain/dto/DailyStatsDto';
