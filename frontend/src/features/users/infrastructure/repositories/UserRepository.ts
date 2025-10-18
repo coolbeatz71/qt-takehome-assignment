@@ -1,5 +1,5 @@
 import type { IUserRepository } from '../../application/repositories/IUserRepository';
-import type { User } from '../../domain/entities/User.entity';
+import type { User } from '../../domain/entities/User';
 import type { CreateUserDTO } from '../../domain/dto/CreateUserDTO';
 import type { UpdateUserDTO } from '../../domain/dto/UpdateUserDTO';
 import { httpClient } from '../../../../shared/infrastructure/http/HttpClient';
