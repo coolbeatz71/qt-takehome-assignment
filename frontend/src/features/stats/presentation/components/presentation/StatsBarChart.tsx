@@ -29,39 +29,53 @@ interface StatsBarChartProps {
  */
 export const StatsBarChart: React.FC<StatsBarChartProps> = ({ data }) => {
   return (
-    <ResponsiveContainer width="100%" height={320}>
-      <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-        <XAxis
-          dataKey="date"
-          axisLine={false}
-          tickLine={false}
-          tick={{ fontSize: 12, fill: '#6B7280' }}
-        />
-        <YAxis
-          axisLine={false}
-          tickLine={false}
-          tick={{ fontSize: 12, fill: '#6B7280' }}
-        />
-        <Tooltip
-          contentStyle={{
-            backgroundColor: '#fff',
-            border: '1px solid #E5E7EB',
-            borderRadius: '8px',
-            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+    <div className="h-64 sm:h-80">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={data}
+          margin={{
+            top: 20,
+            right: 10,
+            left: 0,
+            bottom: 5
           }}
-          formatter={(value: number) => [value, 'Users Created']}
-          labelFormatter={(date: string) => {
-            const item = data.find(d => d.date === date);
-            return item ? DateUtils.formatTooltip(item.fullDate) : date;
-          }}
-        />
-        <Bar
-          dataKey="count"
-          fill="#6366f1"
-          radius={[4, 4, 0, 0]}
-        />
-      </BarChart>
-    </ResponsiveContainer>
+        >
+          <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
+          <XAxis
+            dataKey="date"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fontSize: 11, fill: '#6B7280' }}
+            interval="preserveStartEnd"
+          />
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            tick={{ fontSize: 11, fill: '#6B7280' }}
+            width={30}
+          />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: '#fff',
+              border: '1px solid #E5E7EB',
+              borderRadius: '8px',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              fontSize: '12px',
+            }}
+            formatter={(value: number) => [value, 'Users Created']}
+            labelFormatter={(date: string) => {
+              const item = data.find(d => d.date === date);
+              return item ? DateUtils.formatTooltip(item.fullDate) : date;
+            }}
+          />
+          <Bar
+            dataKey="count"
+            fill="#6366f1"
+            radius={[4, 4, 0, 0]}
+            maxBarSize={60}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
