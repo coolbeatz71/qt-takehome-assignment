@@ -57,7 +57,7 @@ export const UserTableRow: React.FC<UserTableRowProps> = ({ user, onEdit, onDele
             onClick={() => onEdit(user)}
             className="h-9 w-9 p-0"
           >
-            <IconEdit className="h-5 w-5" />
+            <IconEdit />
           </Button>
           <Button
             size="sm"
@@ -65,7 +65,7 @@ export const UserTableRow: React.FC<UserTableRowProps> = ({ user, onEdit, onDele
             onClick={() => onDelete(user.id)}
             className="h-9 w-9 p-0 text-danger-600 hover:text-danger-700 hover:bg-danger-50 dark:hover:bg-danger-900/20"
           >
-            <IconTrash className="h-5 w-5" />
+            <IconTrash />
           </Button>
         </div>
       </td>
