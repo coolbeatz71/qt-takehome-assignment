@@ -14,6 +14,7 @@ import {
   createMockProtobufService,
 } from '../utils/mocks';
 import { UserRole, UserStatus } from '../../src/domain/enums/UserEnums';
+import { errorMessages } from '../../src/shared/constants/error-messages';
 
 describe('Handler Integration Tests', () => {
   const mockUserRepository = createMockUserRepository();
@@ -47,7 +48,7 @@ describe('Handler Integration Tests', () => {
 
       mockUserRepository.findByEmail.mockResolvedValue(existingUser);
 
-      await expect(handler.handle(command)).rejects.toThrow('Email already exists');
+      await expect(handler.handle(command)).rejects.toThrow(errorMessages.user.duplicateEmail);
     });
   });
 
@@ -74,7 +75,7 @@ describe('Handler Integration Tests', () => {
 
       mockUserRepository.findById.mockResolvedValue(null);
 
-      await expect(handler.handle(command)).rejects.toThrow('User not found');
+      await expect(handler.handle(command)).rejects.toThrow(errorMessages.user.notFound);
     });
   });
 
@@ -97,7 +98,7 @@ describe('Handler Integration Tests', () => {
 
       mockUserRepository.findById.mockResolvedValue(null);
 
-      await expect(handler.handle(command)).rejects.toThrow('User not found');
+      await expect(handler.handle(command)).rejects.toThrow(errorMessages.user.notFound);
     });
   });
 

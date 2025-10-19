@@ -2,7 +2,7 @@ import HttpStatus from 'http-status';
 import { Request, Response, Router } from 'express';
 import { GetUserByIdQuery } from './GetUserByIdQuery';
 import { GetUserByIdHandler } from './GetUserByIdHandler';
-import { ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { sendError, sendSuccess } from '../../../../shared/utils/response';
 import { isValidId } from '../../../../shared/utils/validation';
 
@@ -24,19 +24,19 @@ export function getUserByIdRoute(handler: GetUserByIdHandler): Router {
     try {
       const id = isValidId(req.params.id);
       if (!id) {
-        return sendError(res, ERROR_MESSAGES.INVALID_USER_ID, HttpStatus.BAD_REQUEST);
+        return sendError(res, errorMessages.user.invalidId, HttpStatus.BAD_REQUEST);
       }
 
       const query = new GetUserByIdQuery(id);
       const user = await handler.handle(query);
 
       if (!user) {
-        return sendError(res, ERROR_MESSAGES.USER_NOT_FOUND, HttpStatus.NOT_FOUND);
+        return sendError(res, errorMessages.user.notFound, HttpStatus.NOT_FOUND);
       }
 
       return sendSuccess(res, user);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : ERROR_MESSAGES.FAILED_TO_FETCH_USER;
+      const errorMessage = error instanceof Error ? error.message : errorMessages.user.fetchOneFailed;
       return sendError(res, errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   });

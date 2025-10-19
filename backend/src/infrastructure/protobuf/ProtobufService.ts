@@ -2,6 +2,7 @@ import protobuf from 'protobufjs';
 import path from 'path';
 import { User } from '../../domain/entities/User';
 import { IProtobufService } from '../../domain/services/IProtobufService';
+import { errorMessages } from '../../shared/constants/error-messages';
 
 /**
  * Protocol Buffer Service Implementation
@@ -42,7 +43,7 @@ export class ProtobufService implements IProtobufService {
       this.protoRoot = await protobuf.load(this.protoPath);
       return this.protoRoot;
     } catch (error) {
-      throw new Error('Failed to load Protocol Buffer schema');
+      throw new Error(errorMessages.protobuf.schemaLoadFailed);
     }
   }
 
@@ -71,7 +72,7 @@ export class ProtobufService implements IProtobufService {
 
       const errMsg = UserList.verify(payload);
       if (errMsg) {
-        throw new Error(`Payload verification failed: ${errMsg}`);
+        throw new Error(`${errorMessages.protobuf.payloadVerificationFailed}: ${errMsg}`);
       }
 
       const message = UserList.create(payload);
@@ -79,7 +80,10 @@ export class ProtobufService implements IProtobufService {
 
       return Buffer.from(buffer);
     } catch (error) {
-      throw new Error('Failed to encode users to Protocol Buffer format');
+      if (error instanceof Error && error.message.includes(errorMessages.protobuf.payloadVerificationFailed)) {
+        throw error;
+      }
+      throw new Error(errorMessages.protobuf.encodeFailed);
     }
   }
 
@@ -112,7 +116,7 @@ export class ProtobufService implements IProtobufService {
         u.signature
       ));
     } catch (error) {
-      throw new Error('Failed to decode Protocol Buffer data');
+      throw new Error(errorMessages.protobuf.decodeFailed);
     }
   }
 }

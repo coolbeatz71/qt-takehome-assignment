@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from '@jest/globals';
 import { CreateUserHandler } from '../../../src/application/usecases/commands/create-user/CreateUserHandler';
 import { TestFactory } from '../../utils/factories';
 import { createMockUserRepository, createMockCryptoService } from '../../utils/mocks';
+import { errorMessages } from '../../../src/shared/constants/error-messages';
 
 describe('CreateUserHandler', () => {
   let handler: CreateUserHandler;
@@ -30,6 +31,6 @@ describe('CreateUserHandler', () => {
     const command = TestFactory.createUserCommand();
     mockUserRepository.findByEmail.mockResolvedValue(TestFactory.createUser());
 
-    await expect(handler.handle(command)).rejects.toThrow('Email already exists');
+    await expect(handler.handle(command)).rejects.toThrow(errorMessages.user.duplicateEmail);
   });
 });

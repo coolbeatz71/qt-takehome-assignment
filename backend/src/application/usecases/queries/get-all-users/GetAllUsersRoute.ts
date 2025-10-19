@@ -2,7 +2,7 @@ import HttpStatus from 'http-status';
 import { Request, Response, Router } from 'express';
 import { GetAllUsersQuery } from './GetAllUsersQuery';
 import { GetAllUsersHandler } from './GetAllUsersHandler';
-import { ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { sendSuccess, sendError } from '../../../../shared/utils/response';
 
 /**
@@ -26,7 +26,7 @@ export function getAllUsersRoute(handler: GetAllUsersHandler): Router {
 
       return sendSuccess(res, users);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : ERROR_MESSAGES.FAILED_TO_FETCH_USERS;
+      const errorMessage = error instanceof Error ? error.message : errorMessages.user.fetchAllFailed;
       return sendError(res, errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   });

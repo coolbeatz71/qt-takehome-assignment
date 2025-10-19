@@ -2,7 +2,7 @@ import HttpStatus from 'http-status';
 import { Request, Response, Router } from 'express';
 import { ExportUsersProtobufQuery } from './ExportUsersProtobufQuery';
 import { ExportUsersProtobufHandler } from './ExportUsersProtobufHandler';
-import { CONTENT_TYPES, CACHE_CONTROL, ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { sendError } from '../../../../shared/utils/response';
 
 /**
@@ -24,14 +24,14 @@ export function exportUsersProtobufRoute(handler: ExportUsersProtobufHandler): R
       const query = new ExportUsersProtobufQuery();
       const binaryData = await handler.handle(query);
 
-      res.setHeader('Content-Type', CONTENT_TYPES.PROTOBUF);
+      res.setHeader('Cache-Control', "no-store");
+      res.setHeader('Content-Type', "application/x-protobuf");
       res.setHeader('Content-Disposition', 'attachment; filename="users.pb"');
       res.setHeader('Content-Length', binaryData.length.toString());
-      res.setHeader('Cache-Control', CACHE_CONTROL.NO_STORE);
 
       return res.status(HttpStatus.OK).send(binaryData);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : ERROR_MESSAGES.FAILED_TO_EXPORT_USERS;
+      const errorMessage = error instanceof Error ? error.message : errorMessages.user.exportFailed;
       return sendError(res, errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   });

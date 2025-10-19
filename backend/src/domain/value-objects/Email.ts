@@ -1,3 +1,5 @@
+import { errorMessages } from '../../shared/constants/error-messages';
+
 /**
  * Email Value Object
  * Ensures email validity as a domain rule
@@ -12,7 +14,7 @@ export class Email {
    */
   constructor(email: string) {
     if (!Email.isValid(email)) {
-      throw new Error('Invalid email format');
+      throw new Error(errorMessages.validation.invalidEmailFormat);
     }
     this.value = email.toLowerCase().trim();
   }

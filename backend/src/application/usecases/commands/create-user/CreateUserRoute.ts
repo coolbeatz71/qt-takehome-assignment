@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express';
 import HttpStatus from 'http-status';
 import { CreateUserCommand } from './CreateUserCommand';
 import { CreateUserHandler } from './CreateUserHandler';
-import { ERROR_MESSAGES } from '../../../../constants';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 import { sendSuccess, sendError } from '../../../../shared/utils/response';
 import { UserRole, UserStatus } from '../../../../domain/enums/UserEnums';
 
@@ -30,8 +30,8 @@ export function createUserRoute(handler: CreateUserHandler): Router {
 
       return sendSuccess(res, user, HttpStatus.CREATED);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : ERROR_MESSAGES.FAILED_TO_CREATE_USER;
-      const statusCode = error instanceof Error && error.message.includes('Email already exists')
+      const errorMessage = error instanceof Error ? error.message : errorMessages.user.createFailed;
+      const statusCode = error instanceof Error && error.message.includes(errorMessages.user.duplicateEmail)
         ? HttpStatus.BAD_REQUEST
         : HttpStatus.INTERNAL_SERVER_ERROR;
       return sendError(res, errorMessage, statusCode);

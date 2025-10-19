@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { Container } from './infrastructure/dependencies/Container';
 import { createApiRoutes } from './presentation/routes/api.routes';
 import { DatabaseConfig } from './infrastructure/database/DatabaseConfig';
+import { errorMessages } from './shared/constants/error-messages';
 
 dotenv.config();
 
@@ -92,11 +93,11 @@ class App {
    */
   private setupErrorHandlers(): void {
     process.on('unhandledRejection', (reason) => {
-      console.error('Unhandled Rejection:', reason);
+      console.error(`${errorMessages.server.unhandledRejection}:`, reason);
     });
 
     process.on('uncaughtException', (err) => {
-      console.error('Uncaught Exception:', err);
+      console.error(`${errorMessages.server.uncaughtException}:`, err);
       process.exit(1);
     });
   }
@@ -121,7 +122,7 @@ async function bootstrap(): Promise<void> {
     await app.initialize();
     app.start();
   } catch (error) {
-    console.error('Failed to start application:', error);
+    console.error(`${errorMessages.server.startupFailed}:`, error);
     process.exit(1);
   }
 }

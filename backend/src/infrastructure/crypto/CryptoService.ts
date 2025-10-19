@@ -2,6 +2,7 @@ import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { ICryptoService } from '../../domain/services/ICryptoService';
+import { errorMessages } from '../../shared/constants/error-messages';
 
 /**
  * ECDSA P-384 Crypto Service Implementation
@@ -105,7 +106,7 @@ export class CryptoService implements ICryptoService {
 
       return signature.toString('hex');
     } catch (error) {
-      throw new Error('Failed to sign email');
+      throw new Error(errorMessages.crypto.signEmailFailed);
     }
   }
 

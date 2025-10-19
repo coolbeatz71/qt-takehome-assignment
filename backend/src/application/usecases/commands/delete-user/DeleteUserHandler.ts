@@ -1,5 +1,6 @@
 import { IUserRepository } from '../../../repositories/IUserRepository';
 import { DeleteUserCommand } from './DeleteUserCommand';
+import { errorMessages } from '../../../../shared/constants/error-messages';
 
 /**
  * Delete User Command Handler
@@ -22,7 +23,7 @@ export class DeleteUserHandler {
     // Check if user exists
     const existingUser = await this.userRepository.findById(command.id);
     if (!existingUser) {
-      throw new Error('User not found');
+      throw new Error(errorMessages.user.notFound);
     }
 
     // Delete user

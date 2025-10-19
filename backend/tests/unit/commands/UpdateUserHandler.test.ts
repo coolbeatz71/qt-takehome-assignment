@@ -3,6 +3,7 @@ import { UpdateUserHandler } from '../../../src/application/usecases/commands/up
 import { TestFactory } from '../../utils/factories';
 import { createMockUserRepository, createMockCryptoService } from '../../utils/mocks';
 import { UserRole, UserStatus } from '../../../src/domain/enums/UserEnums';
+import { errorMessages } from '../../../src/shared/constants/error-messages';
 
 describe('UpdateUserHandler', () => {
   let handler: UpdateUserHandler;
@@ -37,6 +38,6 @@ describe('UpdateUserHandler', () => {
     const command = TestFactory.updateUserCommand({ id: 999 });
     mockUserRepository.findById.mockResolvedValue(null);
 
-    await expect(handler.handle(command)).rejects.toThrow('User not found');
+    await expect(handler.handle(command)).rejects.toThrow(errorMessages.user.notFound);
   });
 });
