@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { IconX } from '../../icons';
 
 /**
  * Modal component props
@@ -79,7 +79,7 @@ export const Modal: React.FC<ModalProps> = ({
               className="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 transition-colors"
               aria-label="Close modal"
             >
-              <X className="w-5 h-5" />
+              <IconX className="w-5 h-5" />
             </button>
           </div>
 

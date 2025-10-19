@@ -1,6 +1,6 @@
 import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../../../../../../shared';
+import { IconChevronLeft, IconChevronRight } from '../../../../../../shared/presentation/icons';
 
 /**
  * User table pagination component props
@@ -55,7 +55,7 @@ export const UserTablePagination: React.FC<UserTablePaginationProps> = ({
           disabled={!hasPrev}
           className="h-8 w-8 p-0"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <IconChevronLeft className="h-4 w-4" />
         </Button>
 
         <div className="flex gap-1">
@@ -79,7 +79,7 @@ export const UserTablePagination: React.FC<UserTablePaginationProps> = ({
           disabled={!hasNext}
           className="h-8 w-8 p-0"
         >
-          <ChevronRight className="h-4 w-4" />
+          <IconChevronRight className="h-4 w-4" />
         </Button>
       </div>
     </div>
